@@ -158,7 +158,7 @@ INSTALLED_APPS = (
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'django.contrib.flatpages',
-    'django.contrib.markup',
+    'markdown_deux',
     'django.contrib.admin',
     'django.contrib.admindocs',
     'django.contrib.staticfiles',
