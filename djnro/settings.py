@@ -161,7 +161,6 @@ INSTALLED_APPS = (
     'markdown_deux',
     'django.contrib.admin',
     'django.contrib.admindocs',
-    'django.contrib.staticfiles',
     'social.apps.django_app.default',
     'edumanage',
     'accounts',
