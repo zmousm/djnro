@@ -1,5 +1,5 @@
 from django import forms
-from django.core.validators import email_re
+from django.core.validators import EmailValidator
 
 
 class MultipleEmailsField(forms.Field):
@@ -12,8 +12,11 @@ class MultipleEmailsField(forms.Field):
             raise forms.ValidationError('Enter at least one e-mail address. Multiple email addresses Should be separated with semicolon (;)')
         emails = value.split(';')
         for email in emails:
-            if not email_re.match(email):
-                raise forms.ValidationError('%s is not a valid e-mail address.' % email)
+            # Create our own instance with
+            # * blank whitelist - no '@localhost' permitted
+            # * custom error message (referring to the email address being verified in question)
+            # A failed validation will raise a ValidationError - no need to check return value
+            EmailValidator(whitelist=[],message= '%s is not a valid e-mail address.' % email)(email)
 
         # Always return the cleaned data.
         return ';'.join(emails)
