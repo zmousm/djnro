@@ -164,7 +164,6 @@ INSTALLED_APPS = (
     'social.apps.django_app.default',
     'edumanage',
     'accounts',
-    'south',
     'registration',
     'tinymce',
     'utils',
