@@ -2,13 +2,15 @@ from django.db import models
 from django.contrib.auth.models import AbstractUser
 from django.contrib.auth.admin import UserAdmin
 from django.contrib import admin
+from django.conf import settings
 from django.utils.translation import ugettext_lazy as _
 from edumanage.models import Institution
 import re
 
 
 class User(AbstractUser):
-    class Meta:
+    class Meta(AbstractUser.Meta):
+        swappable = 'AUTH_USER_MODEL'
         db_table = 'auth_user';
         verbose_name = _('user')
         verbose_name_plural = _('users')
@@ -25,7 +27,7 @@ except:
 admin.site.register(User, UserAdmin)
 
 class UserProfile(models.Model):
-    user = models.OneToOneField(User)
+    user = models.OneToOneField(settings.AUTH_USER_MODEL)
     institution = models.ForeignKey(Institution)
     is_social_active = models.BooleanField(default=False)
 
