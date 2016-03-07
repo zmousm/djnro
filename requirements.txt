@@ -1,4 +1,4 @@
-Django<1.9
+Django~=1.8.0
 django-markdown-deux==1.0.5
 argparse>=1.2.1
 django-registration==2.0.4
