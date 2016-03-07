@@ -160,7 +160,6 @@ INSTALLED_APPS = (
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'django.contrib.flatpages',
-    'markdown_deux',
     'django.contrib.admin',
     'django.contrib.admindocs',
     'social.apps.django_app.default',
