@@ -51,18 +51,18 @@ To preserve identities of existing user (and permissions and django log entries 
 ### Switch to Django migrations
 
 Next, we need to:
-* Tell the Django migrations framework that our database structures are already in place
+* Tell the Django migrations framework that our database structures (as of final 1.0, so the current initial release) are already in place
 * But replay all migrations that Django internal structures have undergone between Django 1.4 and 1.8
 * And this applies also to the User model that is now presented under (our) accounts package.
 
 The following sequence does the right thing:
-* Introduce initial structures as already present for ````contenttypes````, ````auth````, ````edumanage```` and ````accounts```` packages (````accounts```` only up to ````0002_initial````).
+* Introduce initial structures as already present for ````contenttypes````, ````auth````, ````edumanage```` and ````accounts```` packages (````edumanage```` and ````accounts```` only up to ````0001_initial```` and ````0002_initial```` respectively).
 * Apply all subsequent migrations (last line)
 
 ````
 ./manage.py migrate --fake-initial contenttypes
 ./manage.py migrate --fake-initial auth
-./manage.py migrate --fake-initial --fake edumanage
+./manage.py migrate --fake-initial --fake edumanage 0001_initial
 ./manage.py migrate --fake-initial --fake accounts 0002_initial
 ./manage.py migrate --fake-initial
 ````
