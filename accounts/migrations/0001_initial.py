@@ -30,6 +30,7 @@ class Migration(migrations.Migration):
             ],
             options={
                 'db_table': 'auth_user',
+                'swappable': 'AUTH_USER_MODEL',
                 'verbose_name': 'user',
                 'verbose_name_plural': 'users',
             },
