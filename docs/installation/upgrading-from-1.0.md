@@ -80,11 +80,11 @@ There are two minor differences that your migrated database may have compared to
 
         ALTER TABLE social_auth_nonce ADD CONSTRAINT "social_auth_nonce_server_url_36601f978463b4_uniq" UNIQUE (server_url, timestamp, salt);
 
-2. Edumanage.Instrealmmon may be missing a FOREIGN_KEY constraint - especially if installing on PostgreSQL and using (an older version of) a manual workaround.  Fix this up by running:
+2. Edumanage.Instrealmmon may be missing a FOREIGN_KEY constraint if you created your database on PostgreSQL before the full for PostgreSQL-specific fix was retroactively applied to ````edumanage/migrations/0022_auto__chg_field_institutiondetails_number_id__del_field_instrealmmon_i.py```` in commit 28f60f6233b14c9b16d5aae12b8cbc0b39477e08.  Fix this by running:
 
         ALTER TABLE edumanage_instrealmmon ADD CONSTRAINT "edumanage_i_realm_id_24cc89d4be4145e5_fk_edumanage_instrealm_id" FOREIGN KEY (realm_id) REFERENCES edumanage_instrealm(id) DEFERRABLE INITIALLY DEFERRED;
 
-
+If the command fails with an error message saying the constraint already exists, the error message can be safely ignored - it means this erroneous condition has not occurred on this database.
 
 # Loading old data to a new instance
 In case you want to load data to a new database one has to follow these extra
