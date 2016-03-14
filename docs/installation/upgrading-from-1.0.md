@@ -48,6 +48,11 @@ To preserve identities of existing user (and permissions and django log entries 
     ct.app_label=u'accounts'
     ct.save()
 
+It is important to perform this change before running the ````./manage.py
+migrate```` command in any form of invocation. Otherwise, the migrate command
+would create new ````ContentType```` entries for ````accounts.User```` that
+would conflict with renaming the existing ````auth.User```` entries.
+
 ### Switch to Django migrations
 
 Next, we need to:
