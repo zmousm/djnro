@@ -24,8 +24,6 @@ try:
 except:
     pass
 
-admin.site.register(User, UserAdmin)
-
 class UserProfile(models.Model):
     user = models.OneToOneField(settings.AUTH_USER_MODEL)
     institution = models.ForeignKey(Institution)
